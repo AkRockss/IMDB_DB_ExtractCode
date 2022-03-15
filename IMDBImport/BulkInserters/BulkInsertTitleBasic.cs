@@ -10,29 +10,41 @@ using System.Threading.Tasks;
 
 namespace IMDBImport
 {
-    //around 90 seconds
-    class BulkInsertTitleCrew : IInsert4
+ 
+    class BulkInsertTitleBasic : IInsert
     {
         public enum TableTypes
         {
             tableString, tableInt, tableBool
         }
 
-        public void InsertData4(SqlConnection sqlconn, List<TitleCrew> allTitles4)
+        public void InsertData(SqlConnection sqlconn, List<TitleBasic> allTitles)
         {
-            DataTable TitleTable = new DataTable("TitleCrew");
+            DataTable TitleTable = new DataTable("TitlesBasic");
             TitleTable.Columns.Add("tconst", typeof(string));
-            TitleTable.Columns.Add("directors", typeof(string));
-            TitleTable.Columns.Add("writers", typeof(string));
-  
+            TitleTable.Columns.Add("titleType", typeof(string));
+            TitleTable.Columns.Add("primaryTitle", typeof(string));
+            TitleTable.Columns.Add("originalTitle", typeof(string));
+            TitleTable.Columns.Add("isAdult", typeof(bool));
+            TitleTable.Columns.Add("startYear", typeof(int));
+            TitleTable.Columns.Add("endYear", typeof(int));
+            TitleTable.Columns.Add("runTimeMinutes", typeof(int));
 
-            foreach (TitleCrew crew in allTitles4)
+            TitleTable.Columns.Add("genre", typeof(string));
+
+            foreach (TitleBasic title in allTitles)
             {
                 DataRow row = TitleTable.NewRow();
-                AddValueToRow(crew.tconst, row, "tconst", TableTypes.tableString);
-                AddValueToRow(crew.directors, row, "directors", TableTypes.tableString);
-                AddValueToRow(crew.writers, row, "writers", TableTypes.tableString);
-           
+                AddValueToRow(title.tconst, row, "tconst", TableTypes.tableString);
+                AddValueToRow(title.titleType, row, "titleType", TableTypes.tableString);
+                AddValueToRow(title.primaryTitle, row, "primaryTitle", TableTypes.tableString);
+                AddValueToRow(title.originalTitle, row, "originalTitle", TableTypes.tableString);
+                AddValueToRow(title.isAdult, row, "isAdult", TableTypes.tableBool);
+                AddValueToRow(title.startYear, row, "startYear", TableTypes.tableInt);
+                AddValueToRow(title.endYear, row, "endYear", TableTypes.tableInt);
+                AddValueToRow(title.runTimeMinutes, row, "runTimeMinutes", TableTypes.tableInt);
+
+                AddValueToRow(title.genre, row, "genre", TableTypes.tableString);
 
                 TitleTable.Rows.Add(row);
             }

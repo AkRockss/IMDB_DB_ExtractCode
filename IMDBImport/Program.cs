@@ -8,6 +8,7 @@ namespace IMDBImport
     {
         static void Main(string[] args)
         {
+
             SqlConnection sqlConn = new SqlConnection("Server=localhost;Database=IMDBDB;User Id=IMDB_Inserter;Password=123456789;");
             sqlConn.Open();
 
@@ -16,19 +17,19 @@ namespace IMDBImport
             Console.WriteLine("Read " + allTitles.Count + " titles from file"); 
 
             //NAMEBASIC
-            List<NameBasic> allTitles2 = ReadAllNamesBasic(@"C:\Users\Sande\Desktop\Datamatiker\4. semester\Database\TSV\name.basics\data.tsv", 900000);
+            List<NameBasic> allTitles2 = ReadAllNamesBasic(@"C:\Users\Sande\Desktop\Datamatiker\4. semester\Database\TSV\name.basics\data.tsv", 50000);
             Console.WriteLine("Read " + allTitles2.Count + " titles from file");
 
             //TITLEAKAS
-            List<TitleAkas> allTitles3 = ReadAllTitlesAkas(@"C:\Users\Sande\Desktop\Datamatiker\4. semester\Database\TSV\title.akas\data.tsv", 900000);
+            List<TitleAkas> allTitles3 = ReadAllTitlesAkas(@"C:\Users\Sande\Desktop\Datamatiker\4. semester\Database\TSV\title.akas\data.tsv", 50000);
             Console.WriteLine("Read " + allTitles3.Count + " titles from file");
             
             //TITLECREW
-            List<TitleCrew> allTitles4 = ReadAllTitlesCrew(@"C:\Users\Sande\Desktop\Datamatiker\4. semester\Database\TSV\title.crew\data.tsv", 900000);
+            List<TitleCrew> allTitles4 = ReadAllTitlesCrew(@"C:\Users\Sande\Desktop\Datamatiker\4. semester\Database\TSV\title.crew\data.tsv", 50000);
             Console.WriteLine("Read " + allTitles4.Count + " titles from file");
 
             //TITLEPRINCIPALS
-            List<TitlePrincipals> allTitles5 = ReadAllTitlesPrincipals(@"C:\Users\Sande\Desktop\Datamatiker\4. semester\Database\TSV\title.principals\data.tsv", 900000);
+            List<TitlePrincipals> allTitles5 = ReadAllTitlesPrincipals(@"C:\Users\Sande\Desktop\Datamatiker\4. semester\Database\TSV\title.principals\data.tsv", 50000);
             Console.WriteLine("Read " + allTitles5.Count + " titles from file");
 
 
@@ -113,6 +114,46 @@ namespace IMDBImport
                     DateTime startTime = DateTime.Now;
                     Console.WriteLine("Inserts begin at:" + startTime.ToString());
                     inserter.InsertData(sqlConn, allTitles);
+                    DateTime endTime = DateTime.Now;
+                    Console.WriteLine("Insert time: " + endTime.Subtract(startTime).TotalSeconds);
+                    Console.WriteLine("Inserts end at:" + endTime.ToString());
+                }
+
+                if (inserter2 != null)
+                {
+                    DateTime startTime = DateTime.Now;
+                    Console.WriteLine("Inserts begin at:" + startTime.ToString());
+                    inserter2.InsertData2(sqlConn, allTitles2);
+                    DateTime endTime = DateTime.Now;
+                    Console.WriteLine("Insert time: " + endTime.Subtract(startTime).TotalSeconds);
+                    Console.WriteLine("Inserts end at:" + endTime.ToString());
+                }
+
+                if (inserter3 != null)
+                {
+                    DateTime startTime = DateTime.Now;
+                    Console.WriteLine("Inserts begin at:" + startTime.ToString());
+                    inserter3.InsertData3(sqlConn, allTitles3);
+                    DateTime endTime = DateTime.Now;
+                    Console.WriteLine("Insert time: " + endTime.Subtract(startTime).TotalSeconds);
+                    Console.WriteLine("Inserts end at:" + endTime.ToString());
+                }
+
+                if (inserter4 != null)
+                {
+                    DateTime startTime = DateTime.Now;
+                    Console.WriteLine("Inserts begin at:" + startTime.ToString());
+                    inserter4.InsertData4(sqlConn, allTitles4);
+                    DateTime endTime = DateTime.Now;
+                    Console.WriteLine("Insert time: " + endTime.Subtract(startTime).TotalSeconds);
+                    Console.WriteLine("Inserts end at:" + endTime.ToString());
+                }
+
+                if (inserter5 != null)
+                {
+                    DateTime startTime = DateTime.Now;
+                    Console.WriteLine("Inserts begin at:" + startTime.ToString());
+                    inserter5.InsertData5(sqlConn, allTitles5);
                     DateTime endTime = DateTime.Now;
                     Console.WriteLine("Insert time: " + endTime.Subtract(startTime).TotalSeconds);
                     Console.WriteLine("Inserts end at:" + endTime.ToString());

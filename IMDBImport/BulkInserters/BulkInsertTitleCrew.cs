@@ -10,46 +10,36 @@ using System.Threading.Tasks;
 
 namespace IMDBImport
 {
-    //around 90 seconds
-    class BulkInsertTitleAkas : IInsert3
+  
+    class BulkInsertTitleCrew : IInsert4
     {
         public enum TableTypes
         {
             tableString, tableInt, tableBool
         }
 
-        public void InsertData3(SqlConnection sqlconn, List<TitleAkas> allTitles3)
+        public void InsertData4(SqlConnection sqlconn, List<TitleCrew> allTitles4)
         {
-            DataTable TitleTable = new DataTable("TitlesBasic");
-            TitleTable.Columns.Add("titleId", typeof(string));
-            TitleTable.Columns.Add("ordering", typeof(string));
-            TitleTable.Columns.Add("title", typeof(string));
-            TitleTable.Columns.Add("region", typeof(string));
-            TitleTable.Columns.Add("language", typeof(string));
-            TitleTable.Columns.Add("types", typeof(string));
-            TitleTable.Columns.Add("attributes", typeof(string));
-            TitleTable.Columns.Add("isOriginalTitle", typeof(bool));
+            DataTable TitleTable = new DataTable("TitleCrew");
+            TitleTable.Columns.Add("tconst", typeof(string));
+            TitleTable.Columns.Add("directors", typeof(string));
+            TitleTable.Columns.Add("writers", typeof(string));
+  
 
-          
-            foreach (TitleAkas akas in allTitles3)
+            foreach (TitleCrew crew in allTitles4)
             {
                 DataRow row = TitleTable.NewRow();
-                AddValueToRow(akas.titleId, row, "titleId", TableTypes.tableString);
-                AddValueToRow(akas.ordering, row, "ordering", TableTypes.tableString);
-                AddValueToRow(akas.title, row, "title", TableTypes.tableString);
-                AddValueToRow(akas.region, row, "region", TableTypes.tableString);
-                AddValueToRow(akas.language, row, "language", TableTypes.tableString);
-                AddValueToRow(akas.types, row, "types", TableTypes.tableString);
-                AddValueToRow(akas.attributes, row, "attributes", TableTypes.tableString);
-                AddValueToRow(akas.isOriginalTitle, row, "isOriginalTitle", TableTypes.tableBool);
+                AddValueToRow(crew.tconst, row, "tconst", TableTypes.tableString);
+                AddValueToRow(crew.directors, row, "directors", TableTypes.tableString);
+                AddValueToRow(crew.writers, row, "writers", TableTypes.tableString);
+           
 
-            
                 TitleTable.Rows.Add(row);
             }
             SqlBulkCopy bulkCopy = new SqlBulkCopy(sqlconn, SqlBulkCopyOptions.KeepNulls, null);
             bulkCopy.BulkCopyTimeout = 0;
             // set the destination table name
-            bulkCopy.DestinationTableName = "Title_Basic";
+            bulkCopy.DestinationTableName = "Title_Crew";
 
             try
             {

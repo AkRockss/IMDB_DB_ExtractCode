@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace IMDBImport
 {
-    //around 90 seconds
+ 
     class BulkInsertTitlePrincipals : IInsert5
     {
         public enum TableTypes
@@ -45,7 +45,7 @@ namespace IMDBImport
             SqlBulkCopy bulkCopy = new SqlBulkCopy(sqlconn, SqlBulkCopyOptions.KeepNulls, null);
             bulkCopy.BulkCopyTimeout = 0;
             // set the destination table name
-            bulkCopy.DestinationTableName = "Title_Basic";
+            bulkCopy.DestinationTableName = "Title_Principals";
 
             try
             {

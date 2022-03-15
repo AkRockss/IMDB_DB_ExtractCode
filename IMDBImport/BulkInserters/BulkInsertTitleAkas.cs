@@ -10,48 +10,46 @@ using System.Threading.Tasks;
 
 namespace IMDBImport
 {
-    //around 90 seconds
-    class BulkInsertTitleBasic : IInsert
+
+    class BulkInsertTitleAkas : IInsert3
     {
         public enum TableTypes
         {
             tableString, tableInt, tableBool
         }
 
-        public void InsertData(SqlConnection sqlconn, List<TitleBasic> allTitles)
+        public void InsertData3(SqlConnection sqlconn, List<TitleAkas> allTitles3)
         {
             DataTable TitleTable = new DataTable("TitlesBasic");
-            TitleTable.Columns.Add("tconst", typeof(string));
-            TitleTable.Columns.Add("titleType", typeof(string));
-            TitleTable.Columns.Add("primaryTitle", typeof(string));
-            TitleTable.Columns.Add("originalTitle", typeof(string));
-            TitleTable.Columns.Add("isAdult", typeof(bool));
-            TitleTable.Columns.Add("startYear", typeof(int));
-            TitleTable.Columns.Add("endYear", typeof(int));
-            TitleTable.Columns.Add("runTimeMinutes", typeof(int));
+            TitleTable.Columns.Add("titleId", typeof(string));
+            TitleTable.Columns.Add("ordering", typeof(string));
+            TitleTable.Columns.Add("title", typeof(string));
+            TitleTable.Columns.Add("region", typeof(string));
+            TitleTable.Columns.Add("language", typeof(string));
+            TitleTable.Columns.Add("types", typeof(string));
+            TitleTable.Columns.Add("attributes", typeof(string));
+            TitleTable.Columns.Add("isOriginalTitle", typeof(bool));
 
-            TitleTable.Columns.Add("genre", typeof(string));
-
-            foreach (TitleBasic title in allTitles)
+          
+            foreach (TitleAkas akas in allTitles3)
             {
                 DataRow row = TitleTable.NewRow();
-                AddValueToRow(title.tconst, row, "tconst", TableTypes.tableString);
-                AddValueToRow(title.titleType, row, "titleType", TableTypes.tableString);
-                AddValueToRow(title.primaryTitle, row, "primaryTitle", TableTypes.tableString);
-                AddValueToRow(title.originalTitle, row, "originalTitle", TableTypes.tableString);
-                AddValueToRow(title.isAdult, row, "isAdult", TableTypes.tableBool);
-                AddValueToRow(title.startYear, row, "startYear", TableTypes.tableInt);
-                AddValueToRow(title.endYear, row, "endYear", TableTypes.tableInt);
-                AddValueToRow(title.runTimeMinutes, row, "runTimeMinutes", TableTypes.tableInt);
+                AddValueToRow(akas.titleId, row, "titleId", TableTypes.tableString);
+                AddValueToRow(akas.ordering, row, "ordering", TableTypes.tableString);
+                AddValueToRow(akas.title, row, "title", TableTypes.tableString);
+                AddValueToRow(akas.region, row, "region", TableTypes.tableString);
+                AddValueToRow(akas.language, row, "language", TableTypes.tableString);
+                AddValueToRow(akas.types, row, "types", TableTypes.tableString);
+                AddValueToRow(akas.attributes, row, "attributes", TableTypes.tableString);
+                AddValueToRow(akas.isOriginalTitle, row, "isOriginalTitle", TableTypes.tableBool);
 
-                AddValueToRow(title.genre, row, "genre", TableTypes.tableString);
-
+            
                 TitleTable.Rows.Add(row);
             }
             SqlBulkCopy bulkCopy = new SqlBulkCopy(sqlconn, SqlBulkCopyOptions.KeepNulls, null);
             bulkCopy.BulkCopyTimeout = 0;
             // set the destination table name
-            bulkCopy.DestinationTableName = "Title_Basic";
+            bulkCopy.DestinationTableName = "Title_Akas";
 
             try
             {
