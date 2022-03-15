@@ -20,7 +20,7 @@ namespace IMDBImport
 
         public void InsertData3(SqlConnection sqlconn, List<TitleAkas> allTitles3)
         {
-            DataTable TitleTable = new DataTable("TitlesBasic");
+            DataTable TitleTable = new DataTable("TitleAkas");
             TitleTable.Columns.Add("titleId", typeof(string));
             TitleTable.Columns.Add("ordering", typeof(string));
             TitleTable.Columns.Add("title", typeof(string));

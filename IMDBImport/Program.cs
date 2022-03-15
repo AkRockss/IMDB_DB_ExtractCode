@@ -13,24 +13,24 @@ namespace IMDBImport
             sqlConn.Open();
 
             //TITLEBASIC
-            List<TitleBasic> allTitles = ReadAllTitlesBasic(@"C:\Users\Sande\Desktop\Datamatiker\4. semester\Database\TSV\title.basics\data.tsv", 900000);
+            List<TitleBasic> allTitles = ReadAllTitlesBasic(@"C:\Users\Sande\Desktop\Datamatiker\4. semester\Database\TSV\title.basics\data.tsv", 50000);
             Console.WriteLine("Read " + allTitles.Count + " titles from file"); 
 
             //NAMEBASIC
             List<NameBasic> allTitles2 = ReadAllNamesBasic(@"C:\Users\Sande\Desktop\Datamatiker\4. semester\Database\TSV\name.basics\data.tsv", 50000);
-            Console.WriteLine("Read " + allTitles2.Count + " titles from file");
+            Console.WriteLine("Read " + allTitles.Count + " titles from file");
 
             //TITLEAKAS
             List<TitleAkas> allTitles3 = ReadAllTitlesAkas(@"C:\Users\Sande\Desktop\Datamatiker\4. semester\Database\TSV\title.akas\data.tsv", 50000);
-            Console.WriteLine("Read " + allTitles3.Count + " titles from file");
+            Console.WriteLine("Read " + allTitles.Count + " titles from file");
             
             //TITLECREW
             List<TitleCrew> allTitles4 = ReadAllTitlesCrew(@"C:\Users\Sande\Desktop\Datamatiker\4. semester\Database\TSV\title.crew\data.tsv", 50000);
-            Console.WriteLine("Read " + allTitles4.Count + " titles from file");
+            Console.WriteLine("Read " + allTitles.Count + " titles from file");
 
             //TITLEPRINCIPALS
             List<TitlePrincipals> allTitles5 = ReadAllTitlesPrincipals(@"C:\Users\Sande\Desktop\Datamatiker\4. semester\Database\TSV\title.principals\data.tsv", 50000);
-            Console.WriteLine("Read " + allTitles5.Count + " titles from file");
+            Console.WriteLine("Read " + allTitles.Count + " titles from file");
 
 
             bool readInput = true;
@@ -225,7 +225,7 @@ namespace IMDBImport
 
 
         //READ ALL NAME BASICS
-        public static List<NameBasic> ReadAllNamesBasic(string filePath, int maxRows)
+        public static List<NameBasic> ReadAllNamesBasic(string filePath2, int maxRows)
         {
             List<NameBasic> allTitles2 = new List<NameBasic>();
             int counter = 0;
@@ -251,7 +251,7 @@ namespace IMDBImport
         }
 
         //READ ALL TITLE AKAS
-        public static List<TitleAkas> ReadAllTitlesAkas(string filePath, int maxRows)
+        public static List<TitleAkas> ReadAllTitlesAkas(string filePath3, int maxRows)
         {
             List<TitleAkas> allTitles3 = new List<TitleAkas>();
             int counter = 0;
@@ -277,7 +277,7 @@ namespace IMDBImport
         }
 
         //READ ALL TITLE CREW
-        public static List<TitleCrew> ReadAllTitlesCrew(string filePath, int maxRows)
+        public static List<TitleCrew> ReadAllTitlesCrew(string filePath4, int maxRows)
         {
             List<TitleCrew> allTitles4 = new List<TitleCrew>();
             int counter = 0;
@@ -303,7 +303,7 @@ namespace IMDBImport
         }
 
         //READ ALL TITLE CREW
-        public static List<TitlePrincipals> ReadAllTitlesPrincipals(string filePath, int maxRows)
+        public static List<TitlePrincipals> ReadAllTitlesPrincipals(string filePath5, int maxRows)
         {
             List<TitlePrincipals> allTitles5 = new List<TitlePrincipals>();
             int counter = 0;
