@@ -2,11 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace IMDBImport
 {
@@ -15,7 +12,7 @@ namespace IMDBImport
     {
         public enum TableTypes
         {
-            tableString, tableInt, tableBool
+            tableString
         }
 
         public void InsertData4(SqlConnection sqlconn, List<TitleCrew> allTitles4)
@@ -82,14 +79,15 @@ namespace IMDBImport
                     case TableTypes.tableString:
                         row[rowName] = value;
                         break;
-                    case TableTypes.tableInt:
-                        row[rowName] = int.Parse(value);
-                        break;
-                    case TableTypes.tableBool:
-                        row[rowName] = (value == "1"); ;
-                        break;
+                    //case TableTypes.tableInt:
+                    //    row[rowName] = int.Parse(value);
+                    //    break;
+                    //case TableTypes.tableBool:
+                    //    row[rowName] = (value == "1"); ;
+                    //    break;
                 }
             }
         }
     }
 }
+ 

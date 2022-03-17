@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32106.194
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMDBImport", "IMDBImport\IMDBImport.csproj", "{38E384D5-C52A-4F56-927A-4B3A04E7A5AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IMDBImport", "IMDBImport\IMDBImport.csproj", "{38E384D5-C52A-4F56-927A-4B3A04E7A5AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

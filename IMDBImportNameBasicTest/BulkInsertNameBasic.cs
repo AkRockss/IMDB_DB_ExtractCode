@@ -5,49 +5,44 @@ using System.Data.SqlClient;
 using System.Reflection;
 using System.Text.RegularExpressions;
 
-namespace IMDBImport
+namespace IMDBImportNameBasicTest
 {
- 
-    class BulkInsertTitleBasic : IInsert
+
+    class BulkInsertNameBasic : IInsert
     {
         public enum TableTypes
         {
-            tableString, tableInt, tableBool
+            tableString, tableInt
         }
 
-        public void InsertData(SqlConnection sqlconn, List<TitleBasic> allTitles)
+        public void InsertData(SqlConnection sqlconn, List<NameBasic> allTitles)
         {
-            DataTable TitleTable = new DataTable("TitlesBasic");
-            TitleTable.Columns.Add("tconst", typeof(string));
-            TitleTable.Columns.Add("titleType", typeof(string));
-            TitleTable.Columns.Add("primaryTitle", typeof(string));
-            TitleTable.Columns.Add("originalTitle", typeof(string));
-            TitleTable.Columns.Add("isAdult", typeof(bool));
-            TitleTable.Columns.Add("startYear", typeof(int));
-            TitleTable.Columns.Add("endYear", typeof(int));
-            TitleTable.Columns.Add("runTimeMinutes", typeof(int));
-            TitleTable.Columns.Add("genre", typeof(string));
-
-            foreach (TitleBasic title in allTitles)
+            DataTable TitleTable = new DataTable("NamesBasic");
+            TitleTable.Columns.Add("nconst", typeof(string));
+            TitleTable.Columns.Add("primaryName", typeof(string));
+            TitleTable.Columns.Add("birthYear", typeof(int));
+            TitleTable.Columns.Add("deathYear", typeof(int));
+            TitleTable.Columns.Add("primaryProfession", typeof(string));
+            TitleTable.Columns.Add("knownForTitles", typeof(string));
+        
+       
+            foreach (NameBasic name in allTitles)
             {
                 DataRow row = TitleTable.NewRow();
-                AddValueToRow(title.tconst, row, "tconst", TableTypes.tableString);
-                AddValueToRow(title.titleType, row, "titleType", TableTypes.tableString);
-                AddValueToRow(title.primaryTitle, row, "primaryTitle", TableTypes.tableString);
-                AddValueToRow(title.originalTitle, row, "originalTitle", TableTypes.tableString);
-                AddValueToRow(title.isAdult, row, "isAdult", TableTypes.tableBool);
-                AddValueToRow(title.startYear, row, "startYear", TableTypes.tableInt);
-                AddValueToRow(title.endYear, row, "endYear", TableTypes.tableInt);
-                AddValueToRow(title.runTimeMinutes, row, "runTimeMinutes", TableTypes.tableInt);
-
-                AddValueToRow(title.genre, row, "genre", TableTypes.tableString);
+                AddValueToRow(name.nconst, row, "nconst", TableTypes.tableString);
+                AddValueToRow(name.primaryName, row, "primaryName", TableTypes.tableString);
+                AddValueToRow(name.birthYear, row, "birthYear", TableTypes.tableInt);
+                AddValueToRow(name.deathYear, row, "deathYear", TableTypes.tableInt);
+                AddValueToRow(name.primaryProfession, row, "primaryProfession", TableTypes.tableString);
+                AddValueToRow(name.knownForTitles, row, "knownForTitles", TableTypes.tableString);
+               
 
                 TitleTable.Rows.Add(row);
             }
             SqlBulkCopy bulkCopy = new SqlBulkCopy(sqlconn, SqlBulkCopyOptions.KeepNulls, null);
             bulkCopy.BulkCopyTimeout = 0;
             // set the destination table name
-            bulkCopy.DestinationTableName = "Title_Basic";
+            bulkCopy.DestinationTableName = "Name_Basic";
 
             try
             {
@@ -93,11 +88,13 @@ namespace IMDBImport
                     case TableTypes.tableInt:
                         row[rowName] = int.Parse(value);
                         break;
-                    case TableTypes.tableBool:
-                        row[rowName] = (value == "1"); ;
-                        break;
+                        //case TableTypes.tableBool:
+                        //    row[rowName] = (value == "1"); ;
+                        //    break;
                 }
             }
         }
+
+       
     }
 }

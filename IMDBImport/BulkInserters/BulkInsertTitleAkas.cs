@@ -15,7 +15,7 @@ namespace IMDBImport
     {
         public enum TableTypes
         {
-            tableString, tableInt, tableBool
+            tableString, tableBool
         }
 
         public void InsertData3(SqlConnection sqlconn, List<TitleAkas> allTitles3)
@@ -92,9 +92,9 @@ namespace IMDBImport
                     case TableTypes.tableString:
                         row[rowName] = value;
                         break;
-                    case TableTypes.tableInt:
-                        row[rowName] = int.Parse(value);
-                        break;
+                    //case TableTypes.tableInt:
+                    //    row[rowName] = int.Parse(value);
+                    //    break;
                     case TableTypes.tableBool:
                         row[rowName] = (value == "1"); ;
                         break;

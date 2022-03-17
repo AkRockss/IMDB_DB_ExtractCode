@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IMDBImport
+namespace IMDBImportNameBasicTest
 {
     class NameBasic
     {
@@ -14,7 +14,8 @@ namespace IMDBImport
         public string deathYear { get; set; }
         public string primaryProfession { get; set; }
         public string knownForTitles { get; set; }
-       
+        
+
        
         public int? birthYearNull
         {
@@ -47,6 +48,7 @@ namespace IMDBImport
             }
         }
     
+
 
         public NameBasic()
         {
