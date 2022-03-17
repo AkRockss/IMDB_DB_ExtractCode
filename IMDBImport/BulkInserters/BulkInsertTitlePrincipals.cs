@@ -22,20 +22,20 @@ namespace IMDBImport
         {
             DataTable TitleTable = new DataTable("TitlePrincipals");
             TitleTable.Columns.Add("tconst", typeof(string));
-            TitleTable.Columns.Add("ordering", typeof(string));
-            TitleTable.Columns.Add("nconst", typeof(int));
-            TitleTable.Columns.Add("catergory", typeof(int));
+            TitleTable.Columns.Add("ordering", typeof(int));
+            TitleTable.Columns.Add("nconst", typeof(string));
+            TitleTable.Columns.Add("catergory", typeof(string));
             TitleTable.Columns.Add("job", typeof(string));
-            TitleTable.Columns.Add("characters ", typeof(string));
+            TitleTable.Columns.Add("characters", typeof(string));
     
 
             foreach (TitlePrincipals principals in allTitles5)
             {
                 DataRow row = TitleTable.NewRow();
                 AddValueToRow(principals.tconst, row, "tconst", TableTypes.tableString);
-                AddValueToRow(principals.ordering, row, "ordering", TableTypes.tableString);
-                AddValueToRow(principals.nconst, row, "nconst", TableTypes.tableInt);
-                AddValueToRow(principals.catergory, row, "catergory", TableTypes.tableInt);
+                AddValueToRow(principals.ordering, row, "ordering", TableTypes.tableInt);
+                AddValueToRow(principals.nconst, row, "nconst", TableTypes.tableString);
+                AddValueToRow(principals.catergory, row, "catergory", TableTypes.tableString);
                 AddValueToRow(principals.job, row, "job", TableTypes.tableString);
                 AddValueToRow(principals.characters, row, "characters", TableTypes.tableString);
          

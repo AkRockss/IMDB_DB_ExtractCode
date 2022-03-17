@@ -26,15 +26,15 @@ namespace IMDBImport
         //        return isAdult == "1";
         //    }
         //}
-        //public int? startYearNull
+        //public int? orderingNull
         //{
         //    get
         //    {
-        //        if (startYear.ToLower() == "\\n")
+        //        if (ordering.ToLower() == "\\n")
         //        {
         //            return null;
         //        }
-        //        return int.Parse(startYear);
+        //        return int.Parse(ordering);
         //    }
         //}
         //public int? endYearNull
