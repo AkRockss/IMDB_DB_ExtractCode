@@ -10,6 +10,7 @@ namespace IMDBImport
  
     class BulkInsertTitleBasic : IInsert
     {
+  
         public enum TableTypes
         {
             tableString, tableInt, tableBool

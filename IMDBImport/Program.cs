@@ -4,33 +4,33 @@ using System.Data.SqlClient;
 
 namespace IMDBImport
 {
-    class Program
+    class Program : BulkInsertTitleBasic
     {
         static void Main(string[] args)
         {
 
-            SqlConnection sqlConn = new SqlConnection("Server=localhost;Database=IMDBDB;User Id=IMDB_Inserter;Password=123456789;");
+            SqlConnection sqlConn = new SqlConnection("Server=192.168.1.12;Database=IMDBDB;User Id=IMDB_Inserter;Password=123456789;");
             sqlConn.Open();
 
-            //TITLEBASIC
-            List<TitleBasic> allTitles = ReadAllTitlesBasic(@"C:\TSV\title.basics\data.tsv", 50000);
-            Console.WriteLine("Read " + allTitles.Count + " titles from file");
+            ////TITLEBASIC
+            List<TitleBasic> allTitles = ReadAllTitlesBasic(@"C:\Users\Aleksander K S M\Desktop\Database\TSV\title.basics\data.tsv", 1);
+            Console.WriteLine("Read " + allTitles.Count + " titles from file"); /*8697068*/
 
             //NAMEBASIC
-            List<NameBasic> allTitles2 = ReadAllNamesBasic(@"C:\TSV\name.basics\data.tsv", 50000);
-            Console.WriteLine("Read " + allTitles2.Count + " titles from file");
+            List<NameBasic> allTitles2 = ReadAllNamesBasic(@"C:\Users\Aleksander K S M\Desktop\Database\TSV\name.basics\data.tsv", 1);
+            Console.WriteLine("Read " + allTitles2.Count + " titles from file"); /*11465753*/
 
             //TITLEAKAS
-            List<TitleAkas> allTitles3 = ReadAllTitlesAkas(@"C:\TSV\title.akas\data.tsv", 50000);
-            Console.WriteLine("Read " + allTitles3.Count + " titles from file");
-            
+            List<TitleAkas> allTitles3 = ReadAllTitlesAkas(@"C:\Users\Aleksander K S M\Desktop\Database\TSV\title.akas\data.tsv", 1);
+            Console.WriteLine("Read " + allTitles3.Count + " titles from file"); /*31377342*/
+
             //TITLECREW
-            List<TitleCrew> allTitles4 = ReadAllTitlesCrew(@"C:\TSV\title.crew\data.tsv", 50000);
-            Console.WriteLine("Read " + allTitles4.Count + " titles from file");
+            List<TitleCrew> allTitles4 = ReadAllTitlesCrew(@"C:\Users\Aleksander K S M\Desktop\Database\TSV\title.crew\data.tsv", 1);
+            Console.WriteLine("Read " + allTitles4.Count + " titles from file"); /*8750731*/
 
             //TITLEPRINCIPALS
-            List<TitlePrincipals> allTitles5 = ReadAllTitlesPrincipals(@"C:TSV\title.principals\data.tsv", 50000);
-            Console.WriteLine("Read " + allTitles5.Count + " titles from file");
+            List<TitlePrincipals> allTitles5 = ReadAllTitlesPrincipals(@"C:\Users\Aleksander K S M\Desktop\Database\TSV\title.principals\data.tsv", 49264007);
+            Console.WriteLine("Read " + allTitles5.Count + " titles from file"); /*49264007*/
 
 
             bool readInput = true;
@@ -61,6 +61,7 @@ namespace IMDBImport
                 {
                     case 1:
                         inserter = new BulkInsertTitleBasic();
+
                         break;
                     case 2:
                         inserter2 = new BulkInsertNameBasic();
@@ -118,6 +119,8 @@ namespace IMDBImport
                     DateTime endTime = DateTime.Now;
                     Console.WriteLine("Insert time: " + endTime.Subtract(startTime).TotalSeconds);
                     Console.WriteLine("Inserts end at:" + endTime.ToString());
+                   
+
                 }
 
                 if (inserter2 != null)
@@ -204,7 +207,7 @@ namespace IMDBImport
             List<TitleBasic> allTitles = new List<TitleBasic>();
             int counter = 0;
 
-            foreach (string line in System.IO.File.ReadLines(@"C:\TSV\title.basics\data.tsv"))
+            foreach (string line in System.IO.File.ReadLines(@"C:\Users\Aleksander K S M\Desktop\Database\TSV\title.basics\data.tsv"))
             {
                 //ignore first line with columnnames
                 if (counter != 0)
@@ -231,7 +234,7 @@ namespace IMDBImport
             List<NameBasic> allTitles2 = new List<NameBasic>();
             int counter = 0;
 
-            foreach (string line in System.IO.File.ReadLines(@"C:\TSV\name.basics\data.tsv"))
+            foreach (string line in System.IO.File.ReadLines(@"C:\Users\Aleksander K S M\Desktop\Database\TSV\name.basics\data.tsv"))
             {
                 //ignore first line with columnnames
                 if (counter != 0)
@@ -257,7 +260,7 @@ namespace IMDBImport
             List<TitleAkas> allTitles3 = new List<TitleAkas>();
             int counter = 0;
 
-            foreach (string line in System.IO.File.ReadLines(@"C:\TSV\title.akas\data.tsv"))
+            foreach (string line in System.IO.File.ReadLines(@"C:\Users\Aleksander K S M\Desktop\Database\TSV\title.akas\data.tsv"))
             {
                 //ignore first line with columnnames
                 if (counter != 0)
@@ -283,7 +286,7 @@ namespace IMDBImport
             List<TitleCrew> allTitles4 = new List<TitleCrew>();
             int counter = 0;
 
-            foreach (string line in System.IO.File.ReadLines(@"C:\TSV\title.crew\data.tsv"))
+            foreach (string line in System.IO.File.ReadLines(@"C:\Users\Aleksander K S M\Desktop\Database\TSV\title.crew\data.tsv"))
             {
                 //ignore first line with columnnames
                 if (counter != 0)
@@ -309,7 +312,7 @@ namespace IMDBImport
             List<TitlePrincipals> allTitles5 = new List<TitlePrincipals>();
             int counter = 0;
 
-            foreach (string line in System.IO.File.ReadLines(@"C:\TSV\title.principals\data.tsv"))
+            foreach (string line in System.IO.File.ReadLines(@"C:\Users\Aleksander K S M\Desktop\Database\TSV\title.principals\data.tsv"))
             {
                 //ignore first line with columnnames
                 if (counter != 0)
