@@ -13,13 +13,13 @@ namespace IMDBImport
   
         public enum TableTypes
         {
-            tableString, tableInt, tableBool
+            tableString, tableInt, tableBool, tableRemoveTT
         }
 
         public void InsertData(SqlConnection sqlconn, List<TitleBasic> allTitles)
         {
             DataTable TitleTable = new DataTable("TitlesBasic");
-            TitleTable.Columns.Add("tconst", typeof(string));
+            TitleTable.Columns.Add("tconst", typeof(int));
             TitleTable.Columns.Add("titleType", typeof(string));
             TitleTable.Columns.Add("primaryTitle", typeof(string));
             TitleTable.Columns.Add("originalTitle", typeof(string));
@@ -32,7 +32,7 @@ namespace IMDBImport
             foreach (TitleBasic title in allTitles)
             {
                 DataRow row = TitleTable.NewRow();
-                AddValueToRow(title.tconst, row, "tconst", TableTypes.tableString);
+                AddValueToRow(title.tconst, row, "tconst", TableTypes.tableRemoveTT);
                 AddValueToRow(title.titleType, row, "titleType", TableTypes.tableString);
                 AddValueToRow(title.primaryTitle, row, "primaryTitle", TableTypes.tableString);
                 AddValueToRow(title.originalTitle, row, "originalTitle", TableTypes.tableString);
@@ -95,8 +95,13 @@ namespace IMDBImport
                         row[rowName] = int.Parse(value);
                         break;
                     case TableTypes.tableBool:
-                        row[rowName] = (value == "1"); ;
+                        row[rowName] = (value == "1"); 
                         break;
+                    case TableTypes.tableRemoveTT:
+                        row[rowName] = value.TrimStart('t'); 
+                        break;
+
+                  
                 }
             }
         }

@@ -15,14 +15,14 @@ namespace IMDBImport
     {
         public enum TableTypes
         {
-            tableString, tableBool
+            tableString, tableBool, tableRemoveTT, tableInt
         }
 
         public void InsertData3(SqlConnection sqlconn, List<TitleAkas> allTitles3)
         {
             DataTable TitleTable = new DataTable("TitleAkas");
-            TitleTable.Columns.Add("titleId", typeof(string));
-            TitleTable.Columns.Add("ordering", typeof(string));
+            TitleTable.Columns.Add("titleId", typeof(int));
+            TitleTable.Columns.Add("ordering", typeof(int));
             TitleTable.Columns.Add("title", typeof(string));
             TitleTable.Columns.Add("region", typeof(string));
             TitleTable.Columns.Add("language", typeof(string));
@@ -34,8 +34,8 @@ namespace IMDBImport
             foreach (TitleAkas akas in allTitles3)
             {
                 DataRow row = TitleTable.NewRow();
-                AddValueToRow(akas.titleId, row, "titleId", TableTypes.tableString);
-                AddValueToRow(akas.ordering, row, "ordering", TableTypes.tableString);
+                AddValueToRow(akas.titleId, row, "titleId", TableTypes.tableRemoveTT);
+                AddValueToRow(akas.ordering, row, "ordering", TableTypes.tableInt);
                 AddValueToRow(akas.title, row, "title", TableTypes.tableString);
                 AddValueToRow(akas.region, row, "region", TableTypes.tableString);
                 AddValueToRow(akas.language, row, "language", TableTypes.tableString);
@@ -92,11 +92,14 @@ namespace IMDBImport
                     case TableTypes.tableString:
                         row[rowName] = value;
                         break;
-                    //case TableTypes.tableInt:
-                    //    row[rowName] = int.Parse(value);
-                    //    break;
+                    case TableTypes.tableInt:
+                        row[rowName] = int.Parse(value);
+                        break;
                     case TableTypes.tableBool:
                         row[rowName] = (value == "1"); ;
+                        break;
+                    case TableTypes.tableRemoveTT:
+                        row[rowName] = value.TrimStart('t');
                         break;
                 }
             }

@@ -13,7 +13,7 @@ namespace IMDBImport
             sqlConn.Open();
 
             ////TITLEBASIC
-            List<TitleBasic> allTitles = ReadAllTitlesBasic(@"C:\Users\Aleksander K S M\Desktop\Database\TSV\title.basics\data.tsv", 1);
+            List<TitleBasic> allTitles = ReadAllTitlesBasic(@"C:\Users\Aleksander K S M\Desktop\Database\TSV\title.basics\data.tsv", 8697068);
             Console.WriteLine("Read " + allTitles.Count + " titles from file"); /*8697068*/
 
             //NAMEBASIC
@@ -29,7 +29,7 @@ namespace IMDBImport
             Console.WriteLine("Read " + allTitles4.Count + " titles from file"); /*8750731*/
 
             //TITLEPRINCIPALS
-            List<TitlePrincipals> allTitles5 = ReadAllTitlesPrincipals(@"C:\Users\Aleksander K S M\Desktop\Database\TSV\title.principals\data.tsv", 49264007);
+            List<TitlePrincipals> allTitles5 = ReadAllTitlesPrincipals(@"C:\Users\Aleksander K S M\Desktop\Database\TSV\title.principals\data.tsv", 1);
             Console.WriteLine("Read " + allTitles5.Count + " titles from file"); /*49264007*/
 
 

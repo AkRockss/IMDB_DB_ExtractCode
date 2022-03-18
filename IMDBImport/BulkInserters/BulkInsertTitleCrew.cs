@@ -12,24 +12,23 @@ namespace IMDBImport
     {
         public enum TableTypes
         {
-            tableString
+            tableString, tableRemoveTT /*tableRemoveNM*/
         }
 
         public void InsertData4(SqlConnection sqlconn, List<TitleCrew> allTitles4)
         {
             DataTable TitleTable = new DataTable("TitleCrew");
-            TitleTable.Columns.Add("tconst", typeof(string));
+            TitleTable.Columns.Add("tconst", typeof(int));
             TitleTable.Columns.Add("directors", typeof(string));
             TitleTable.Columns.Add("writers", typeof(string));
-  
+       
 
             foreach (TitleCrew crew in allTitles4)
             {
                 DataRow row = TitleTable.NewRow();
-                AddValueToRow(crew.tconst, row, "tconst", TableTypes.tableString);
+                AddValueToRow(crew.tconst, row, "tconst", TableTypes.tableRemoveTT);
                 AddValueToRow(crew.directors, row, "directors", TableTypes.tableString);
                 AddValueToRow(crew.writers, row, "writers", TableTypes.tableString);
-           
 
                 TitleTable.Rows.Add(row);
             }
@@ -79,12 +78,14 @@ namespace IMDBImport
                     case TableTypes.tableString:
                         row[rowName] = value;
                         break;
-                    //case TableTypes.tableInt:
-                    //    row[rowName] = int.Parse(value);
-                    //    break;
-                    //case TableTypes.tableBool:
-                    //    row[rowName] = (value == "1"); ;
-                    //    break;
+                    case TableTypes.tableRemoveTT:
+                        row[rowName] = value.TrimStart('t');
+                        break;
+                        //case TableTypes.tableRemoveNM:
+                        //    row[rowName] = value.TrimStart('n', 'm');
+                        //    break;
+
+
                 }
             }
         }

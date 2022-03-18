@@ -12,7 +12,6 @@ namespace IMDBImport
         public string directors { get; set; }
         public string writers { get; set; }
 
-
         //public bool? isAdultNull
         //{
         //    get
@@ -24,17 +23,32 @@ namespace IMDBImport
         //        return isAdult == "1";
         //    }
         //}
-        //public int? startYearNull
-        //{
-        //    get
-        //    {
-        //        if (startYear.ToLower() == "\\n")
-        //        {
-        //            return null;
-        //        }
-        //        return int.Parse(startYear);
-        //    }
-        //}
+        
+        public int? directorsNull
+        {
+            get
+            {
+                if (directors.ToLower() == "\\n")
+                {
+                    return null;
+                }
+                return int.Parse(directors);
+            }
+        }
+
+        public int? writersNull
+        {
+            get
+            {
+                if (writers.ToLower() == "\\n")
+                {
+                    return null;
+                }
+                return int.Parse(writers);
+            }
+        }
+
+
         //public int? endYearNull
         //{
         //    get
@@ -76,6 +90,7 @@ namespace IMDBImport
             tconst = splitLine[0];
             directors = splitLine[1];
             writers = splitLine[2];
+     
 
 
         }

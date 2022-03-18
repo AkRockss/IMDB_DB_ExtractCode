@@ -15,15 +15,15 @@ namespace IMDBImport
     {
         public enum TableTypes
         {
-            tableString, tableInt
+            tableString, tableInt, tableRemoveTT, tableRemoveNM
         }
 
         public void InsertData5(SqlConnection sqlconn, List<TitlePrincipals> allTitles5)
         {
             DataTable TitleTable = new DataTable("TitlePrincipals");
-            TitleTable.Columns.Add("tconst", typeof(string));
+            TitleTable.Columns.Add("tconst", typeof(int));
             TitleTable.Columns.Add("ordering", typeof(int));
-            TitleTable.Columns.Add("nconst", typeof(string));
+            TitleTable.Columns.Add("nconst", typeof(int));
             TitleTable.Columns.Add("catergory", typeof(string));
             TitleTable.Columns.Add("job", typeof(string));
             TitleTable.Columns.Add("characters", typeof(string));
@@ -32,9 +32,9 @@ namespace IMDBImport
             foreach (TitlePrincipals principals in allTitles5)
             {
                 DataRow row = TitleTable.NewRow();
-                AddValueToRow(principals.tconst, row, "tconst", TableTypes.tableString);
+                AddValueToRow(principals.tconst, row, "tconst", TableTypes.tableRemoveTT);
                 AddValueToRow(principals.ordering, row, "ordering", TableTypes.tableInt);
-                AddValueToRow(principals.nconst, row, "nconst", TableTypes.tableString);
+                AddValueToRow(principals.nconst, row, "nconst", TableTypes.tableRemoveNM);
                 AddValueToRow(principals.catergory, row, "catergory", TableTypes.tableString);
                 AddValueToRow(principals.job, row, "job", TableTypes.tableString);
                 AddValueToRow(principals.characters, row, "characters", TableTypes.tableString);
@@ -91,9 +91,15 @@ namespace IMDBImport
                     case TableTypes.tableInt:
                         row[rowName] = int.Parse(value);
                         break;
-                    //case TableTypes.tableBool:
-                    //    row[rowName] = (value == "1"); ;
-                    //    break;
+                    case TableTypes.tableRemoveTT:
+                        row[rowName] = value.TrimStart('t');
+                        break;
+                    case TableTypes.tableRemoveNM:
+                        row[rowName] = value.TrimStart('n', 'm');
+                        break;
+                        //case TableTypes.tableBool:
+                        //    row[rowName] = (value == "1"); ;
+                        //    break;
                 }
             }
         }

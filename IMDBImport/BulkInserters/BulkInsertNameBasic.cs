@@ -15,13 +15,13 @@ namespace IMDBImport
     {
         public enum TableTypes
         {
-            tableString, tableInt
+            tableString, tableInt, tableRemoveNM, tableRemoveTT
         }
 
         public void InsertData2(SqlConnection sqlconn, List<NameBasic> allTitles2)
         {
             DataTable TitleTable = new DataTable("NameBasic");
-            TitleTable.Columns.Add("nconst", typeof(string));
+            TitleTable.Columns.Add("nconst", typeof(int));
             TitleTable.Columns.Add("primaryName", typeof(string));
             TitleTable.Columns.Add("birthYear", typeof(int));
             TitleTable.Columns.Add("deathYear", typeof(int));
@@ -32,12 +32,12 @@ namespace IMDBImport
             foreach (NameBasic name in allTitles2)
             {
                 DataRow row = TitleTable.NewRow();
-                AddValueToRow(name.nconst, row, "nconst", TableTypes.tableString);
+                AddValueToRow(name.nconst, row, "nconst", TableTypes.tableRemoveNM);
                 AddValueToRow(name.primaryName, row, "primaryName", TableTypes.tableString);
                 AddValueToRow(name.birthYear, row, "birthYear", TableTypes.tableInt);
                 AddValueToRow(name.deathYear, row, "deathYear", TableTypes.tableInt);
                 AddValueToRow(name.primaryProfession, row, "primaryProfession", TableTypes.tableString);
-                AddValueToRow(name.knownForTitles, row, "knownForTitles", TableTypes.tableString);
+                AddValueToRow(name.knownForTitles, row, "knownForTitles", TableTypes.tableRemoveTT);
                
 
                 TitleTable.Rows.Add(row);
@@ -90,6 +90,12 @@ namespace IMDBImport
                         break;
                     case TableTypes.tableInt:
                         row[rowName] = int.Parse(value);
+                        break;
+                    case TableTypes.tableRemoveNM:
+                        row[rowName] = value.TrimStart('n', 'm');
+                        break;
+                    case TableTypes.tableRemoveTT:
+                        row[rowName] = value.Replace('t', '0');
                         break;
                         //case TableTypes.tableBool:
                         //    row[rowName] = (value == "1"); ;
