@@ -25,11 +25,11 @@ namespace IMDBImport
             Console.WriteLine("Read " + allTitles3.Count + " titles from file TitlesAkas"); /*31377342*/
 
             //TITLECREW
-            List<TitleCrew> allTitles4 = ReadAllTitlesCrew(@"C:\Users\Aleksander K S M\Desktop\Database\TSV\title.crew\data.tsv", 8750731);
+            List<TitleCrew> allTitles4 = ReadAllTitlesCrew(@"C:\Users\Aleksander K S M\Desktop\Database\TSV\title.crew\data.tsv", 1);
             Console.WriteLine("Read " + allTitles4.Count + " titles from file TitlesCrew"); /*8750731*/
 
             //TITLEPRINCIPALS
-            List<TitlePrincipals> allTitles5 = ReadAllTitlesPrincipals(@"C:\Users\Aleksander K S M\Desktop\Database\TSV\title.principals\data.tsv", 1);
+            List<TitlePrincipals> allTitles5 = ReadAllTitlesPrincipals(@"C:\Users\Aleksander K S M\Desktop\Database\TSV\title.principals\data.tsv", 49264007);
             Console.WriteLine("Read " + allTitles5.Count + " titles from file TitlesPrincipals"); /*49264007*/
 
 
@@ -42,18 +42,21 @@ namespace IMDBImport
                 IInsert4 inserter4 = null;
                 IInsert5 inserter5 = null;
 
-                Console.WriteLine("::::::::BULKING THE F DATA::::::::");
+                Console.WriteLine();
+                Console.WriteLine("::::::::BULKING THE F DATA::::::::");              
                 Console.WriteLine("1 for TitleBasic Bulk insert");
                 Console.WriteLine("2 for NameBasic Bulk insert");
                 Console.WriteLine("3 for TitleAkas Bulk insert");
                 Console.WriteLine("4 for TitleCrew Bulk insert");
                 Console.WriteLine("5 for TitlePrincipals Bulk insert");
+                Console.WriteLine();
                 Console.WriteLine("::::::::CLEARING::::::::");
                 Console.WriteLine("6 for clearing TitleBasicDB");
                 Console.WriteLine("7 for clearing NameBasicDB");
                 Console.WriteLine("8 for clearing TitleAkasDB");
                 Console.WriteLine("9 for clearing TitleCrewDB");
                 Console.WriteLine("10 for clearing TitlePrincipals");
+                Console.WriteLine();
                 Console.WriteLine("::::::::ENDING::::::::");
                 Console.WriteLine("11 for end"); 
 
