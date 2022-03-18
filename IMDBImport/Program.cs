@@ -13,24 +13,24 @@ namespace IMDBImport
             sqlConn.Open();
 
             ////TITLEBASIC
-            List<TitleBasic> allTitles = ReadAllTitlesBasic(@"C:\Users\Aleksander K S M\Desktop\Database\TSV\title.basics\data.tsv", 8697068);
-            Console.WriteLine("Read " + allTitles.Count + " titles from file"); /*8697068*/
+            List<TitleBasic> allTitles = ReadAllTitlesBasic(@"C:\Users\Aleksander K S M\Desktop\Database\TSV\title.basics\data.tsv", 1);
+            Console.WriteLine("Read " + allTitles.Count + " titles from file TitlesBasic"); /*8697068*/
 
             //NAMEBASIC
             List<NameBasic> allTitles2 = ReadAllNamesBasic(@"C:\Users\Aleksander K S M\Desktop\Database\TSV\name.basics\data.tsv", 1);
-            Console.WriteLine("Read " + allTitles2.Count + " titles from file"); /*11465753*/
+            Console.WriteLine("Read " + allTitles2.Count + " titles from file NamesBasic"); /*11465753*/
 
             //TITLEAKAS
             List<TitleAkas> allTitles3 = ReadAllTitlesAkas(@"C:\Users\Aleksander K S M\Desktop\Database\TSV\title.akas\data.tsv", 1);
-            Console.WriteLine("Read " + allTitles3.Count + " titles from file"); /*31377342*/
+            Console.WriteLine("Read " + allTitles3.Count + " titles from file TitlesAkas"); /*31377342*/
 
             //TITLECREW
-            List<TitleCrew> allTitles4 = ReadAllTitlesCrew(@"C:\Users\Aleksander K S M\Desktop\Database\TSV\title.crew\data.tsv", 1);
-            Console.WriteLine("Read " + allTitles4.Count + " titles from file"); /*8750731*/
+            List<TitleCrew> allTitles4 = ReadAllTitlesCrew(@"C:\Users\Aleksander K S M\Desktop\Database\TSV\title.crew\data.tsv", 8750731);
+            Console.WriteLine("Read " + allTitles4.Count + " titles from file TitlesCrew"); /*8750731*/
 
             //TITLEPRINCIPALS
             List<TitlePrincipals> allTitles5 = ReadAllTitlesPrincipals(@"C:\Users\Aleksander K S M\Desktop\Database\TSV\title.principals\data.tsv", 1);
-            Console.WriteLine("Read " + allTitles5.Count + " titles from file"); /*49264007*/
+            Console.WriteLine("Read " + allTitles5.Count + " titles from file TitlesPrincipals"); /*49264007*/
 
 
             bool readInput = true;
@@ -42,18 +42,20 @@ namespace IMDBImport
                 IInsert4 inserter4 = null;
                 IInsert5 inserter5 = null;
 
-                Console.WriteLine("Write 1 for TitleBasic Bulk insert, " +
-                    "2 for NameBasic Bulk insert, " +
-                    "3 for TitleAkas Bulk insert, " +
-                    "4 for TitleCrew Bulk insert, " +
-                    "5 for TitlePrincipals Bulk insert");
-              
-                Console.WriteLine("6 for clearing TitleBasicDB, " +
-                    "7 for clearing NameBasicDB, " +
-                    "8 for clearing TitleAkasDB, " +
-                    "9 for clearing TitleCrewDB, " +
-                    "10 for clearing TitlePrincipals,  " +
-                    "11 for end");
+                Console.WriteLine("::::::::BULKING THE F DATA::::::::");
+                Console.WriteLine("1 for TitleBasic Bulk insert");
+                Console.WriteLine("2 for NameBasic Bulk insert");
+                Console.WriteLine("3 for TitleAkas Bulk insert");
+                Console.WriteLine("4 for TitleCrew Bulk insert");
+                Console.WriteLine("5 for TitlePrincipals Bulk insert");
+                Console.WriteLine("::::::::CLEARING::::::::");
+                Console.WriteLine("6 for clearing TitleBasicDB");
+                Console.WriteLine("7 for clearing NameBasicDB");
+                Console.WriteLine("8 for clearing TitleAkasDB");
+                Console.WriteLine("9 for clearing TitleCrewDB");
+                Console.WriteLine("10 for clearing TitlePrincipals");
+                Console.WriteLine("::::::::ENDING::::::::");
+                Console.WriteLine("11 for end"); 
 
                 string input = Console.ReadLine();
                 int inputNumber = int.Parse(input);
