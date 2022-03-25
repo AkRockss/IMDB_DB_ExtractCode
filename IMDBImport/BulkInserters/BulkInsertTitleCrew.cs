@@ -12,7 +12,7 @@ namespace IMDBImport
     {
         public enum TableTypes
         {
-            tableString, tableRemoveTT /*tableRemoveNM*/
+            tableString, tableRemoveTT, tableRemoveNM
         }
 
         public void InsertData4(SqlConnection sqlconn, List<TitleCrew> allTitles4)
@@ -27,8 +27,8 @@ namespace IMDBImport
             {
                 DataRow row = TitleTable.NewRow();
                 AddValueToRow(crew.tconst, row, "tconst", TableTypes.tableRemoveTT);
-                AddValueToRow(crew.directors, row, "directors", TableTypes.tableString);
-                AddValueToRow(crew.writers, row, "writers", TableTypes.tableString);
+                AddValueToRow(crew.directors, row, "directors", TableTypes.tableRemoveNM);
+                AddValueToRow(crew.writers, row, "writers", TableTypes.tableRemoveNM);
 
                 TitleTable.Rows.Add(row);
             }
@@ -81,9 +81,9 @@ namespace IMDBImport
                     case TableTypes.tableRemoveTT:
                         row[rowName] = value.TrimStart('t');
                         break;
-                        //case TableTypes.tableRemoveNM:
-                        //    row[rowName] = value.TrimStart('n', 'm');
-                        //    break;
+                    case TableTypes.tableRemoveNM:
+                        row[rowName] = value.Replace('n', '0').Replace('m', '0');
+                        break;
 
 
                 }

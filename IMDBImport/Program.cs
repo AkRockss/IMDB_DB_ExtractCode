@@ -25,11 +25,11 @@ namespace IMDBImport
             Console.WriteLine("Read " + allTitles3.Count + " titles from file TitlesAkas"); /*31377342*/
 
             //TITLECREW
-            List<TitleCrew> allTitles4 = ReadAllTitlesCrew(@"C:\Users\Aleksander K S M\Desktop\Database\TSV\title.crew\data.tsv", 1);
+            List<TitleCrew> allTitles4 = ReadAllTitlesCrew(@"C:\Users\Aleksander K S M\Desktop\Database\TSV\title.crew\data.tsv", 8750731);
             Console.WriteLine("Read " + allTitles4.Count + " titles from file TitlesCrew"); /*8750731*/
 
             //TITLEPRINCIPALS
-            List<TitlePrincipals> allTitles5 = ReadAllTitlesPrincipals(@"C:\Users\Aleksander K S M\Desktop\Database\TSV\title.principals\data.tsv", 49264007);
+            List<TitlePrincipals> allTitles5 = ReadAllTitlesPrincipals(@"C:\Users\Aleksander K S M\Desktop\Database\TSV\title.principals\data.tsv", 1);
             Console.WriteLine("Read " + allTitles5.Count + " titles from file TitlesPrincipals"); /*49264007*/
 
 
