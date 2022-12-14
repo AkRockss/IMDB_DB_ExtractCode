@@ -9,7 +9,7 @@ namespace IMDBImport
         static void Main(string[] args)
         {
 
-            SqlConnection sqlConn = new SqlConnection("Server=192.168.1.12;Database=IMDBDB;User Id=IMDB_Inserter;Password=123456789;");
+            SqlConnection sqlConn = new SqlConnection("Server=192.168.1.12;Database=IMDBDB;User Id=X;Password=X;");
             sqlConn.Open();
 
             ////TITLEBASIC
